@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Cars/uitheme.theme" type="Theme" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.733333, 0.239216, 0.239216, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 0.533333 )
+
+[node name="PatianceMeter" type="ProgressBar"]
+margin_left = -36.0
+margin_top = 16.0
+margin_right = 38.0
+margin_bottom = 32.0
+theme = ExtResource( 1 )
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+max_value = 10.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}

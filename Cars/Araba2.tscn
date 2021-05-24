@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Player/city_cars_2.png" type="Texture" id=1]
+[ext_resource path="res://Cars/bigdirt.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Cars/araba2.gd" type="Script" id=3]
+[ext_resource path="res://Cars/patianceMeter.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 5.31828
+height = 35.9975
+
+[node name="Pikap" type="StaticBody2D"]
+script = ExtResource( 3 )
+
+[node name="city_cars_2" type="Sprite" parent="."]
+position = Vector2( -0.5, -7.35961 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 6, 123, 47, 18.2648 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.198471, 0.0865631 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+shape = SubResource( 1 )
+
+[node name="Dirts" type="Position2D" parent="."]
+
+[node name="bigDirt1" parent="Dirts" instance=ExtResource( 2 )]
+position = Vector2( 28.3685, -9.16148 )
+
+[node name="bigDirt2" parent="Dirts" instance=ExtResource( 2 )]
+position = Vector2( -34.4939, -7.0738 )
+
+[node name="bigDirt3" parent="Dirts" instance=ExtResource( 2 )]
+position = Vector2( 0.41674, -5.56604 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="PatianceMeter" parent="." instance=ExtResource( 4 )]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
