@@ -19,4 +19,9 @@ var dirtcount = 4
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+func _process(delta):
+	if Input.is_action_just_pressed("escape"):
+		get_tree().quit()
+	
 
