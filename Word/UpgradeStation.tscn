@@ -30,5 +30,6 @@ position = Vector2( 7.62939e-06, 9.54053 )
 shape = SubResource( 2 )
 
 [node name="UpgradeMenu" parent="." instance=ExtResource( 3 )]
+
 [connection signal="area_entered" from="." to="." method="_on_UpgradeStation_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_UpgradeStation_area_exited"]

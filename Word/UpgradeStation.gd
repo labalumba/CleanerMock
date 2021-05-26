@@ -13,11 +13,13 @@ func _process(delta):
 		
 func _ready():
 	uiButton.release_focus()
+	animationTree.play("menuIdle")
 
 
 func _on_UpgradeStation_area_entered(area):
 	if area.is_in_group("playerhands"):
 		animationTree.play("menuopen")
+		animationTree.play("Idle")
 		uiButton.grab_focus()
 		isInside=true
 

@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-var baseMoney = 10	
+var baseMoney = Main.carWashBaseMoney	
 var isInside = false
 var keysequence = []
 var randkey = 0
@@ -11,11 +11,14 @@ var prevvalue
 
 onready var timer=$Timer
 var pay = 0
-var totalTime=10
+var totalTime=5
 func _ready():
+	timer.start()
+	$PatianceMeter.max_value = totalTime*Main.patience
+	$PatianceMeter.value = totalTime*Main.patience
 	for i in 6:
 		randomize()
-
+		randkey = randi()%6
 		while randkey == prevvalue:
 			randkey = randi()%6
 		match randkey:
@@ -33,18 +36,21 @@ func _ready():
 				keysequence.append("D")
 		prevvalue = randkey
 	$ColorRect/Label.text=str(keysequence)
-	timer.wait_time = $PatianceMeter.value
-				
+	#timer.wait_time = $PatianceMeter.value
+	timer.wait_time = totalTime*Main.patience	
+	timer.start()	
 
 	
 
 func _process(delta):
 	$PatianceMeter.value = timer.time_left
 	if isDone:
-		pay = baseMoney + (totalTime - timer.get_time_left())*.8
+		pay = baseMoney + timer.get_time_left()*Main.moneyBonusMultiplier/(totalTime*Main.patience)
 		pay = int(pay)
 		print(pay)
 		Main.wallet = Main.wallet + pay
+		
+		get_tree().get_root().get_node("World/YSort/Player/notiftext").add_color_override("font_color",Color(0,1,0,1))
 		get_tree().get_root().get_node("World/YSort/Player/notiftext").text = "$" + str(pay)
 		get_tree().get_root().get_node("World/YSort/Player/notiftext/Timer").start()		
 		print(Main.wallet) 
