@@ -60,3 +60,17 @@ func _on_Button3_pressed():
 		get_tree().get_root().get_node("World/YSort/Player/notiftext").text = "-$50" 
 		get_tree().get_root().get_node("World/YSort/Player/notiftext/Timer").start()
 		
+
+
+func _on_Button4_pressed():
+	if Main.wallet >=100:
+		Main.wallet -=100
+		Main.bonusMoney += 100
+
+
+func _on_Button5_pressed():
+	if Main.wallet >= 250:
+		Main.wallet -=250
+		Main.sprayScale *= 1.1
+	if Main.sprayScale >=2:
+		$Control/ColorRect/MarginContainer/VBoxContainer/Button5.queue_free()

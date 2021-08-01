@@ -4,15 +4,28 @@ var velocity = Vector2.ZERO
 var MAX_SPEED = 300
 var acceleration=1200
 var FRICTION=1400
+
 onready var animationplayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
+
+
+func _process(delta):
+	
+	get_node("Position2D/Hitbox/CollisionShape2D/Sprite").visible = false
+	get_node("Position2D/Hitbox/CollisionShape2D").scale.y= Main.sprayScale
+	
+	if Input.is_action_just_pressed("spray"):
+			get_node("Position2D/Hitbox/CollisionShape2D/Sprite").visible = true
+	
+		
 
 func _physics_process(delta):
 	
 	MAX_SPEED = Main.maxspeed
 	acceleration = Main.acceleration
 	FRICTION = Main.friction
+	
 	var input_vector = Vector2.ZERO
 	input_vector.x= Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input_vector.y= Input.get_action_strength("move_down") - Input.get_action_strength("move_up")

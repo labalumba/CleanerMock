@@ -24,7 +24,7 @@ func _process(delta):
 func _on_Timer_timeout():
 	print("here i go")
 	randomize()
-	arabatype=randi()%3
+	arabatype=randi()%4
 	match arabatype:
 		0:
 			araba=load("res://Cars/Araba.tscn").instance()
@@ -32,6 +32,8 @@ func _on_Timer_timeout():
 			araba=load("res://Cars/Araba2.tscn").instance()
 		2:
 			araba=load("res://Cars/Araba3.tscn").instance()
+		3:
+			araba=load("res://Cars/Araba4.tscn").instance()
 	
 	add_child(araba)
 
