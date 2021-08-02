@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Cars/araba4.gd" type="Script" id=1]
 [ext_resource path="res://Cars/patianceMeter.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/city_cars_2.png" type="Texture" id=3]
+[ext_resource path="res://Cars/wax.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 5.31828
@@ -43,6 +44,20 @@ one_shot = true
 max_value = 5.0
 
 [node name="Timer2" type="Timer" parent="."]
+
+[node name="waxpoints" type="Position2D" parent="."]
+
+[node name="wax1" parent="waxpoints" instance=ExtResource( 4 )]
+position = Vector2( -29.5, 0.125 )
+
+[node name="wax2" parent="waxpoints" instance=ExtResource( 4 )]
+position = Vector2( -3.625, 3.25 )
+
+[node name="wax3" parent="waxpoints" instance=ExtResource( 4 )]
+position = Vector2( 28, -0.125 )
+
+[node name="wax4" parent="waxpoints" instance=ExtResource( 4 )]
+position = Vector2( 3.375, -17 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]

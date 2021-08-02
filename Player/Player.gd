@@ -8,6 +8,7 @@ var FRICTION=1400
 onready var animationplayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
+onready var spraybusy = false
 
 
 func _process(delta):
@@ -15,8 +16,10 @@ func _process(delta):
 	get_node("Position2D/Hitbox/CollisionShape2D/Sprite").visible = false
 	get_node("Position2D/Hitbox/CollisionShape2D").scale.y= Main.sprayScale
 	
-	if Input.is_action_just_pressed("spray"):
+	if spraybusy == false:
+		if Input.is_action_just_pressed("spray"):
 			get_node("Position2D/Hitbox/CollisionShape2D/Sprite").visible = true
+			
 	
 		
 
@@ -47,3 +50,13 @@ func _physics_process(delta):
 
 func _on_Timer_timeout():
 	get_node("notiftext").text = ""
+
+
+func _on_UpgradeStation_area_entered(area):
+	if area.is_in_group("playerhands"):
+		spraybusy = true
+
+
+func _on_UpgradeStation_area_exited(area):
+	if area.is_in_group("playerhands"):
+		spraybusy = false

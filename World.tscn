@@ -556,3 +556,6 @@ position = Vector2( 134.456, 201.181 )
 
 [node name="ArabaSpawner3" parent="YSort" instance=ExtResource( 10 )]
 position = Vector2( 396.337, 201.181 )
+
+[connection signal="area_entered" from="YSort/UpgradeStation" to="YSort/Player" method="_on_UpgradeStation_area_entered"]
+[connection signal="area_exited" from="YSort/UpgradeStation" to="YSort/Player" method="_on_UpgradeStation_area_exited"]

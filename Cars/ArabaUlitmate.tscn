@@ -1,0 +1,88 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Cars/ArabaUlitmate.gd" type="Script" id=1]
+[ext_resource path="res://Cars/patianceMeter.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player/city_cars_2.png" type="Texture" id=3]
+[ext_resource path="res://Cars/bigdirt.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Cars/dirt.tscn" type="PackedScene" id=5]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 5.31828
+height = 35.9975
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 22.7777
+height = 65.2606
+
+[node name="ArabaUltimate" type="StaticBody2D"]
+script = ExtResource( 1 )
+
+[node name="city_cars_2" type="Sprite" parent="."]
+position = Vector2( -0.5, -7.35961 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 6.74251, 43.9397, 46.6499, 19.7909 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.198471, 0.0865631 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -0.996506, -6.84091 )
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="PatianceMeter" parent="." instance=ExtResource( 2 )]
+max_value = 5.0
+
+[node name="Timer2" type="Timer" parent="."]
+
+[node name="smallDirts" type="Position2D" parent="."]
+
+[node name="Dirt1" parent="smallDirts" instance=ExtResource( 5 )]
+position = Vector2( 37.1832, -25.399 )
+
+[node name="Dirt2" parent="smallDirts" instance=ExtResource( 5 )]
+position = Vector2( 11.899, 1.50889 )
+
+[node name="Dirt3" parent="smallDirts" instance=ExtResource( 5 )]
+position = Vector2( 13.0588, -20.4118 )
+
+[node name="Dirt4" parent="smallDirts" instance=ExtResource( 5 )]
+position = Vector2( -14.197, 4.40844 )
+
+[node name="Dirt5" parent="smallDirts" instance=ExtResource( 5 )]
+position = Vector2( -11.0655, -23.6593 )
+
+[node name="Dirt6" parent="smallDirts" instance=ExtResource( 5 )]
+position = Vector2( -38.4373, 0.00111389 )
+
+[node name="Dirt7" parent="smallDirts" instance=ExtResource( 5 )]
+position = Vector2( -34.3779, -22.1515 )
+
+[node name="Dirt8" parent="smallDirts" instance=ExtResource( 5 )]
+position = Vector2( 38.111, 1.74084 )
+
+[node name="Dirts" type="Position2D" parent="."]
+
+[node name="bigDirt1" parent="Dirts" instance=ExtResource( 4 )]
+position = Vector2( 28.3685, -9.16148 )
+
+[node name="bigDirt2" parent="Dirts" instance=ExtResource( 4 )]
+position = Vector2( -34.4939, -7.0738 )
+
+[node name="bigDirt3" parent="Dirts" instance=ExtResource( 4 )]
+position = Vector2( 0.41674, -5.56604 )
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -13,11 +13,12 @@ script = ExtResource( 2 )
 position = Vector2( 0.289957, -0.173971 )
 scale = Vector2( 0.316255, 0.316255 )
 texture = ExtResource( 1 )
-vframes = 2
 hframes = 2
+vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.23035, -0.230349 )
 shape = SubResource( 1 )
+
 [connection signal="area_entered" from="." to="." method="_on_Dirt_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Dirt_area_exited"]
