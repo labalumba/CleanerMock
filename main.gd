@@ -22,6 +22,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _process(delta):
+	moneyBonusMultiplier = 10 + bonusMoney
 	smallDirtBasemoney = 10 + bonusMoney
 	bigDirtBaseMoney = 9 + bonusMoney
 	carWashBaseMoney = 12 + bonusMoney

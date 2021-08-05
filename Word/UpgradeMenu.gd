@@ -65,12 +65,21 @@ func _on_Button3_pressed():
 func _on_Button4_pressed():
 	if Main.wallet >=100:
 		Main.wallet -=100
-		Main.bonusMoney += 100
+		Main.bonusMoney += 10
+		get_tree().get_root().get_node("World/YSort/Player/notiftext").add_color_override("font_color",Color(1,0,0,1))
+		get_tree().get_root().get_node("World/YSort/Player/notiftext").text = "-$100" 
+		get_tree().get_root().get_node("World/YSort/Player/notiftext/Timer").start()
+		
 
 
 func _on_Button5_pressed():
 	if Main.wallet >= 250:
 		Main.wallet -=250
 		Main.sprayScale *= 1.1
+		get_tree().get_root().get_node("World/YSort/Player/notiftext").add_color_override("font_color",Color(1,0,0,1))
+		get_tree().get_root().get_node("World/YSort/Player/notiftext").text = "-$250" 
+		get_tree().get_root().get_node("World/YSort/Player/notiftext/Timer").start()
+	
 	if Main.sprayScale >=2:
 		$Control/ColorRect/MarginContainer/VBoxContainer/Button5.queue_free()
+
